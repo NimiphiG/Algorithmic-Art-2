@@ -21,7 +21,7 @@ function setup() {
     strokeJoin(ROUND)
     noFill()
     angleMode(DEGREES)
-    let colours = [color('#ff0000'), color('#00ff00'), color('#0000ff')]
+    let colours = [color('#99b898'), color('#fecea8'), color('#ffb47c'), color('#e84a5f'), color('#2a363b')]
 
 
 

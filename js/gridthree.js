@@ -45,13 +45,22 @@ function setup() {
 
                 let length = stichHeight * 2 * rounds
                 let cellWidth = length / (rounds * 2)
+                roundColour = random(colours)
 
-                stroke(random(colours))
+                fill(roundColour)
+                stroke(roundColour)
                 if (rounds == 4) {
                     stroke(0)
-                } else {
-                    rect(centerX - stichHeight / 2 - length / 2, centerY - stichHeight / 2 - length / 2, length + stichHeight)
+                    fill(0)
                 }
+                //  else {
+                //     noFill()
+                //     rect(centerX - stichHeight / 2 - length / 2, centerY - stichHeight / 2 - length / 2, length + stichHeight)
+                //     fill(roundColour)
+                   
+                // }
+
+                
 
                 for (i = 1; i <= 4; i++) {
 

@@ -7,9 +7,9 @@ let cellSize = 80;
 let theta = 0
 
 function preload() {
-    let numTextures = 10
-    for (let i = 5; i <= numTextures; i++) {
-        let texture = loadImage(`images/texture${i}.png`);// back ticks `` are template literals, ${} string interpolation
+    let numTextures = 3
+    for (let i = 2; i <= numTextures; i++) {
+        let texture = loadImage(`images/stickers${i}.jpg`);// back ticks `` are template literals, ${} string interpolation
         textures.push(texture);
     }
 
@@ -26,7 +26,7 @@ function setup() {
     let y = 40;
     
     let sizes = [cellSize];
-    let colors = [color('#264653'), color('#c44536'), color('#283d3b'), color('#7ee9680'), color('#ae6378'), color('#256ca2'), color('#f2bc20'), color('#2f9eb8'), color('#b4748d')]
+    let colors = [color('#264653'), color('#c44536'), color('#283d3b'), color('#7ee9680'), color('#ae6378'), color('#256ca2'), color('#f2bc20'), color('#2f9eb8'), color('#b4748d'),color('#fcb900')]
 
 
     while (y < height-80) {

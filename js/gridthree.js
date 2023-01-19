@@ -37,7 +37,7 @@ function setup() {
     strokeWeight(stichHeight/5);
     strokeJoin(ROUND)
     angleMode(DEGREES)
-    let colours = [color('#99b898'), color('#fecea8'), color('#ffb47c'), color('#e84a5f'), color('#2a363b')]
+    let colours = [color('#509056'),color('#a46e80'),color('#99b898'),color('#fcb940'), color('#fecea8'), color('#ffb47c'), color('#e84a5f'), color('#2a363b')]
 
 
     while (tiles <= tileCount*tileCount) {

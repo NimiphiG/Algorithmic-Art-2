@@ -10,5 +10,5 @@ body {
 }
 canvas {
   display: block;
-  outline: 10px solid #d8d4af;
+  /* outline: 10px solid #d8d4af; */
 }

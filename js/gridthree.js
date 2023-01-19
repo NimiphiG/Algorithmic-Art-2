@@ -8,6 +8,8 @@ let stichWidth = 20;
 
 let tiles = 0
 
+let tileCount = 4
+
 //i should automate this
 let Xs = [100, 100, 100, 100, 300, 300, 300, 300, 500, 500, 500, 500, 700, 700, 700, 700];
 let Ys = [100, 300, 500, 700, 100, 300, 500, 700, 100, 300, 500, 700, 100, 300, 500, 700];
@@ -24,9 +26,7 @@ function setup() {
     let colours = [color('#99b898'), color('#fecea8'), color('#ffb47c'), color('#e84a5f'), color('#2a363b')]
 
 
-
-
-    while (tiles <= 16) {
+    while (tiles <= tileCount*tileCount) {
         tile()
         tiles += 1
 

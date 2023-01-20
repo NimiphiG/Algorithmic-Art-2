@@ -6,7 +6,7 @@ let rounds = clicked;
 let tiles = 0
 
 let tileCount = 4//number of squares across
-let maxRounds = 20 // number of rounds in eaach square
+let maxRounds = 10 // number of rounds in eaach square
 
 let stichHeight = 800/((tileCount*maxRounds*2)+1);
 let stichWidth = stichHeight*0.8;
@@ -33,7 +33,7 @@ function setup() {
 
 
     createCanvas(800, 800);
-    background(100);
+    background(70);
     strokeWeight(stichHeight/5);
     strokeJoin(ROUND)
     angleMode(DEGREES)

@@ -5,8 +5,8 @@ let rounds = clicked;
 
 let tiles = 0
 
-let tileCount = 5 //number of squares across
-let maxRounds = 10 // number of rounds in eaach square
+let tileCount = 4//number of squares across
+let maxRounds = 20 // number of rounds in eaach square
 
 let stichHeight = 800/((tileCount*maxRounds*2)+1);
 let stichWidth = stichHeight*0.8;

@@ -52,3 +52,7 @@ function setup() {
         }
     }
 }
+
+function mouseClicked(){
+    setup()
+}

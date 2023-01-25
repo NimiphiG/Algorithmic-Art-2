@@ -1,30 +1,26 @@
 
-window
-//variable inputs
-let tileCount = 1//number of squares across
-let maxRounds = 10 // number of rounds in eaach square
-
-//global variable based on inputs
-let stitchHeight = 800 / ((tileCount * maxRounds * 2) + 1);// changes the stitch height to acount for the previous variables 
-let stitchWidth = stitchHeight * 0.8;//sets the stitch width in acourdance with the stitch height
-let inc = maxRounds * stitchHeight * 2;// sets the distance between each squares center coordinates
-
-// creates two arrays to hold the center coordinates of each square
-let Xs = [];
-let Ys = [];
-
-for (i = 0; i < tileCount * tileCount; i++) {
-    x = Math.floor(i / tileCount) * inc + (inc + stitchHeight) / 2;
-    Xs.push(x);
-};
-
-for (i = 0; i < tileCount * tileCount; i++) {
-    y = (i % tileCount) * inc + (inc + stitchHeight) / 2;
-    Ys.push(y);
-};
-
-
 function setup() {
+
+    //variable inputs
+    let tileCount = document.getElementById('tileCount').value 
+    let maxRounds = document.getElementById('rounds').value 
+
+    //global variable based on inputs
+    let stitchHeight = 800 / ((tileCount * maxRounds * 2) + 1);// changes the stitch height to acount for the previous variables 
+    let stitchWidth = stitchHeight * 0.8;//sets the stitch width in acourdance with the stitch height
+
+    // creates two arrays to hold the center coordinates of each square
+    let Xs = []; let Ys = [];
+    let inc = maxRounds * stitchHeight * 2;// sets the distance between each squares center coordinates
+
+    for (i = 0; i < tileCount * tileCount; i++) {
+
+        x = Math.floor(i / tileCount) * inc + inc / 2 + stitchHeight / 2;
+        y = (i % tileCount) * inc + inc / 2 + stitchHeight / 2;
+
+        Xs.push(x);  Ys.push(y);
+    };
+
 
     createCanvas(800, 800);
     background(70);
@@ -44,13 +40,14 @@ function setup() {
     function tile() {
 
         //sets the center coordinates to 
-        centerX = Xs[tiles]
-        centerY = Ys[tiles]
+        centerX = Xs[tiles]; centerY = Ys[tiles]
 
-        // resets the round to 1 every tile
-        rounds = 1
+        // resets the round to 0 every tile
+        rounds = 0
+
         // draws the apropriate amount of rounds as stated by the input
-        while (rounds <= maxRounds) {
+        while (rounds < maxRounds) {
+            rounds += 1
 
             let length = stitchHeight * rounds * 2 // sets the length of each side of each round
 
@@ -87,7 +84,7 @@ function setup() {
 
                 pop();
             }
-            rounds += 1;
+
         }
     }
 }

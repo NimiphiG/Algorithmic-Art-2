@@ -1,122 +1,99 @@
 
-let clicked = 1;
-let growth = 1
-let rounds = clicked;
-
-let tiles = 0
-
-let tileCount = 4//number of squares across
+window
+//variable inputs
+let tileCount = 1//number of squares across
 let maxRounds = 10 // number of rounds in eaach square
 
-let stichHeight = 800/((tileCount*maxRounds*2)+1);
-let stichWidth = stichHeight*0.8;
+//global variable based on inputs
+let stitchHeight = 800 / ((tileCount * maxRounds * 2) + 1);// changes the stitch height to acount for the previous variables 
+let stitchWidth = stitchHeight * 0.8;//sets the stitch width in acourdance with the stitch height
+let inc = maxRounds * stitchHeight * 2;// sets the distance between each squares center coordinates
 
-let inc = maxRounds*stichHeight*2
-let rem = 800 - inc * tileCount
-
-
-// creates an array for the center coordinates of each square
+// creates two arrays to hold the center coordinates of each square
 let Xs = [];
 let Ys = [];
-for(i=0;i<tileCount*tileCount;i++){
-    x = Math.floor(i/tileCount)*inc + inc/2 +rem/2;
+
+for (i = 0; i < tileCount * tileCount; i++) {
+    x = Math.floor(i / tileCount) * inc + (inc + stitchHeight) / 2;
     Xs.push(x);
-}
-for(i=0;i<tileCount*tileCount;i++){
-    y = (i%tileCount)*inc + inc/2 +rem/2;
+};
+
+for (i = 0; i < tileCount * tileCount; i++) {
+    y = (i % tileCount) * inc + (inc + stitchHeight) / 2;
     Ys.push(y);
-}
+};
 
 
 function setup() {
 
-
-
     createCanvas(800, 800);
     background(70);
-    strokeWeight(stichHeight/5);
-    strokeJoin(ROUND)
-    angleMode(DEGREES)
-    let colours = [color('#509056'),color('#a46e80'),color('#99b898'),color('#fcb940'), color('#fecea8'), color('#ffb47c'), color('#e84a5f'), color('#2a363b')]
+    angleMode(DEGREES);
+    strokeJoin(ROUND);
+    strokeWeight(stitchHeight / 5);
 
+    let colours = [color('#509056'), color('#a46e80'), color('#99b898'), color('#fcb940'), color('#fecea8'), color('#ffb47c'), color('#e84a5f'), color('#2a363b')]
+    let tiles = 0 // resets the number of tiles to 0 for each set up
 
-    while (tiles <= tileCount*tileCount) {
+    //calls the tiles function an apropriate amount of times for the input variables
+    while (tiles < tileCount * tileCount) {
         tile()
         tiles += 1
-
     }
 
-
     function tile() {
-        if (tiles < tileCount*tileCount) {
-            centerX = Xs[tiles]
-            centerY = Ys[tiles]
-            
 
+        //sets the center coordinates to 
+        centerX = Xs[tiles]
+        centerY = Ys[tiles]
 
-            rounds = 0
+        // resets the round to 1 every tile
+        rounds = 1
+        // draws the apropriate amount of rounds as stated by the input
+        while (rounds <= maxRounds) {
 
-            while (rounds <= maxRounds) {
+            let length = stitchHeight * rounds * 2 // sets the length of each side of each round
 
-                let length = stichHeight * 2 * rounds
-                roundColour = random(colours)
+            // picks a random colour from the array to use for each round
+            roundColour = random(colours)
+            fill(roundColour)
+            stroke(roundColour)
 
-                fill(roundColour)
-                stroke(roundColour)
-                if (rounds == maxRounds) {
-                    stroke(0)
-                    fill(0)
-                }
-                
-                //rect(centerX - stichHeight / 2 - length / 2, centerY - stichHeight / 2 - length / 2, length + stichHeight)
-                
-
-                
-
-                for (i = 1; i <= 4; i++) {
-
-                    if (i == 1) { r = length/2; u = stichHeight + stichWidth / 2; l = 0; d = 0 }
-                    if (i == 2) { r = 0; u = length / 2; l = stichHeight + stichWidth / 2; d = 0 }
-                    if (i == 3) { r = 0; u = 0; l = length / 2; d = stichHeight + stichWidth / 2 }
-                    if (i == 4) { r = stichHeight + stichWidth / 2; u = 0; l = 0; d = length / 2 }
-
-                    push()
-                    
-                    translate(centerX - r + l, centerY - u + d)
-                    rotate(90*i)
-
-                    // for (let n = rounds; n > 0; n--) 
-                    // { rect(n * stichHeight * 2 - length / 2, -stichHeight / 2, stichWidth, stichHeight) }
-
-                    for (let n = rounds; n > 0; n--) 
-                    { rect(n * stichHeight * 2 - length / 2, -stichHeight / 2, stichWidth, stichHeight) }
-
-                    pop()
-                }
-                rounds += 1
+            //sets the last round of each square to black
+            if (rounds == maxRounds) {
+                stroke(0)
+                fill(0)
             }
 
+
+            //draws each side 4 times
+            for (i = 1; i <= 4; i++) {
+
+                //sets the variables for the translation of each side so they allign correctly
+                if (i == 1) { x = -length / 2; y = -stitchHeight - stitchWidth / 2; }
+                if (i == 2) { x = stitchHeight + stitchWidth / 2; y = length / 2 }
+                if (i == 3) { x = length / 2; y = stitchHeight + stitchWidth / 2 }
+                if (i == 4) { x = -stitchHeight - stitchWidth / 2; y = -length / 2 }
+
+                push();
+
+                translate(centerX + x, centerY + y); // translates thr origin to a point thats offset from the center in accordance with which side is being drawn
+                rotate(90 * i);// rotates each side 90 degrees from the last one 
+
+                // draws rectangles in acordance with all previuosly set variables
+                for (let n = 1; n <= rounds; n++) {
+                    rect(n * stitchHeight * 2 - length / 2, -stitchHeight / 2, stitchWidth, stitchHeight);
+                }
+
+                pop();
+            }
+            rounds += 1;
         }
     }
 }
 
 
+// recalls the set up function to randomise the colours on every click
+function mouseClicked() { setup() }
 
-function mouseClicked() {
-    rounds = 0
-
-    clicked += growth
-    console.log(clicked)
-
-    if (clicked == 10) {
-        growth = -1
-    }
-    if (clicked == 0) {
-        growth = 1
-    }
-
-
-    tiles = 0
-    setup()
-}
 
